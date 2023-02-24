@@ -34,7 +34,7 @@ jobs:
         with:
           source: ./
           destination: ./_site
-      - run: echo "aaa" > ./_site/aaa.html
+      - run: sudo echo "aaa" > ./_site/aaa.html
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
 
