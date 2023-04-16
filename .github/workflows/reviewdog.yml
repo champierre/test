@@ -1,24 +1,25 @@
-name: Reviewdog
+name: reviewdog
 
-on:
-  pull_request:
-    branches-ignore:
-      - master
+on: [pull_request]      
 
 permissions:
   contents: read
   pull-requests: write
 
 jobs:
-  lint:
+  reviewdog:
     runs-on: ubuntu-latest
+    env:
+      REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v3
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7.1
       - uses: reviewdog/action-setup@v1
         with:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-review
-
       - name: Run rubocop
         run: bundle exec rubocop | reviewdog -reporter=github-pr-review -f=rubocop
         env:
