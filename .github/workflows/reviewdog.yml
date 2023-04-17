@@ -21,7 +21,7 @@ jobs:
       - name: Bundle install
         run: bundle install --path vendor/bundle --jobs 4 --retry 3
       - name: rubocop
-        uses: champierre/action-rubocop@v1
+        uses: reviewdog/action-rubocop@v2
         with:
           rubocop_version: gemfile
-          reporter: github-pr-review # Default is github-pr-check
+          reporter: github-pr-review
