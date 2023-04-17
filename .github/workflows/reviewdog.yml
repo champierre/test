@@ -1,6 +1,6 @@
 name: reviewdog
 
-on: [pull_request]      
+on: [pull_request]
 
 permissions:
   contents: read
@@ -23,5 +23,11 @@ jobs:
       - name: rubocop
         uses: champierre/action-rubocop@v1
         with:
-          rubocop_version: gemfile
-          reporter: github-pr-review # Default is github-pr-check
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-review
+      - name: misspell
+        uses: reviewdog/action-misspell@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-review
+          locale: "US"
