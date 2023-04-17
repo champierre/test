@@ -1,1 +1,11 @@
 hoge
+
+/v3/users/me/insurance_contracts:
+get:
+  operationId: listAllInsuranceContracts
+  summary: List all insurance contracts
+  tags: [users-iinsurance-contract]
+  parameters:
+    - $ref: '#/components/headers/AccessToken'
+    - $ref: '#/components/headers/Client'
+    - $ref: '#/components/headers/Uid'
